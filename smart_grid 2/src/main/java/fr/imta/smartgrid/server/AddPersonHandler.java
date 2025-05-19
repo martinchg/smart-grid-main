@@ -10,11 +10,11 @@ import io.vertx.ext.web.RoutingContext;
 import jakarta.persistence.EntityManager;
 
 // Cette classe gère les requêtes HTTP pour récupérer les informations d'une personne.
-public class PersonHandler implements Handler<RoutingContext> {
+public class AddPersonHandler implements Handler<RoutingContext> {
     private EntityManager db;
 
     // Constructeur qui initialise l'EntityManager pour les opérations sur la base de données.
-    public PersonHandler(EntityManager db) {
+    public AddPersonHandler (EntityManager db) {
         this.db = db;
     }
 
@@ -38,7 +38,6 @@ public class PersonHandler implements Handler<RoutingContext> {
         for (Sensor s : p.getSensors()) {
             l.add(s.getId());
         }
-        Json
         result.put("owned_sensors", l); // Ajoute la liste des capteurs possédés.
 
         // Retourne les informations de la personne au format JSON dans la réponse HTTP.

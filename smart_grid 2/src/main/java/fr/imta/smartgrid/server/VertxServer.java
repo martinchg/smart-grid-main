@@ -37,15 +37,13 @@ public class VertxServer {
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
 
-        router.get("/hello").handler(new DisplayRequestHandler(this.db));
-
         router.get("/grids").handler(new GridsHandler(this.db));
         router.get("/grid/:id").handler(new GridHandler(this.db));
         router.get("/grid/:id/:action").handler(new GridActionHandler(this.db));
 
         router.get("/persons").handler(new PersonsHandler(this.db));
         router.get("/person/:id").handler(new PersonHandler(this.db));
-        // router.post("/person/:id").handler(new PersonHandler(this.db));
+        router.post("/person/:id").handler(new AddPersonHandler(this.db));
         // router.delete("/person/:id").handler(new PersonHandler(this.db));
         // router.put("/person").handler(new PersonHandler(this.db));
 
@@ -53,8 +51,8 @@ public class VertxServer {
         // router.post("/sensor/:id").handler(new SensorHandler(this.db));
         router.get("/sensors/:kind").handler(new SensorsHandler(this.db));
 
-        // router.get("/consumers").handler(new ConsumersHandler());
-        // router.get("/producers").handler(new ProducersHandler());
+        router.get("/consumers").handler(new ConsumersProducersHandler(this.db));
+        router.get("/producers").handler(new ConsumersProducersHandler(this.db));
 
         router.get("/measurement/:id").handler(new MeasurementHandler(this.db));
         router.get("/measurement/:id/values").handler(new MeasurementHandler(this.db));

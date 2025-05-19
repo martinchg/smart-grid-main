@@ -69,7 +69,7 @@ Return a JSON array containing all person IDs in database.
 Example response [for this request](http://localhost:8080/persons):
 ```json
 [1, 2]
-```
+``` 
 
 ### GET `/person/:id`
 
